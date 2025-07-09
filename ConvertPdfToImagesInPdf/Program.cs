@@ -2,11 +2,7 @@ using Docnet.Core.Models;
 using Docnet.Core;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Formats.Png;
-using System.IO;
-using Image = SixLabors.ImageSharp.Image; 
+using ImageMagick;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,19 +50,15 @@ static string ConvertPdfToImagesPdf(string pdfBase64)
                 var rawBytes = pageReader.GetImage();
                 var width = pageReader.GetPageWidth();
                 var height = pageReader.GetPageHeight();
-                var characters = pageReader.GetCharacters();
 
-                using (var image = Image.LoadPixelData<Bgra32>(rawBytes, width, height))
+                using (var image = new MagickImage(rawBytes, new PixelReadSettings((uint)width, (uint)height, StorageType.Char, PixelMapping.BGRA)))
                 {
-                    using (var stream = new MemoryStream())
-                    {
-                        image.Save(stream, new PngEncoder());
-                        images.Add(stream.ToArray());
-                    };
-                };
-            };
+                    image.Format = MagickFormat.Png;
+                    images.Add(image.ToByteArray());
+                }
+            }
         }
-    };
+    }
     var pdfBytes = ConvertImagesToPdf(images);
     return Convert.ToBase64String(pdfBytes);
 }
@@ -79,14 +71,11 @@ static byte[] ConvertImagesToPdf(List<byte[]> images)
 
         try
         {
-            // Use ImageSharp to get dimensions of the first image
             using (var firstImageMs = new MemoryStream(images[0]))
+            using (var firstImage = new MagickImage(firstImageMs))
             {
-                using (var firstImage = Image.Load(firstImageMs))
-                {
-                    iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(0, 0, firstImage.Width, firstImage.Height);
-                    document = new Document(pageSize, 0, 0, 0, 0);
-                }
+                iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(0, 0, firstImage.Width, firstImage.Height);
+                document = new Document(pageSize, 0, 0, 0, 0);
             }
 
             PdfWriter writer = PdfWriter.GetInstance(document, pdfStream);
