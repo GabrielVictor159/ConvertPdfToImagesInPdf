@@ -67,8 +67,6 @@ bower_components/
 *.pid
 *.log
 
-# Docker
-docker-compose.override.yml
 
 # Azure
 .azure/
