@@ -1,0 +1,6 @@
+services:
+  convertpdftoimagesinpdf:
+    image: ${DOCKER_REGISTRY-}convertpdftoimagesinpdf
+    build:
+      context: .
+      dockerfile: ConvertPdfToImagesInPdf/Dockerfile

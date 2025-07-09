@@ -1,0 +1,146 @@
+# Visual Studio
+.vs/
+*.sln.docstates
+*.user
+*.suo
+*.opensdf
+*.sdf
+*.dbmdl
+*.jfm
+*.pfx
+*.resharper
+*.vssscc
+*.buildscc
+*.pidb
+*.log
+*.scc
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+build/
+dist/
+artifacts/
+
+# Packages
+packages/
+*.nupkg
+*.snupkg
+*.appx
+*.msi
+*.msp
+*.zip
+
+# Rider
+.idea/
+*.iml
+
+# DotNet tools
+.config/
+.devcontainer/
+.dotnet/
+.template.config/
+temp/
+tmp/
+
+# External dependencies
+node_modules/
+bower_components/
+
+# Visual Studio Code
+.vscode/
+
+# Project files
+*.csproj.user
+*.vcxproj.user
+*.vbproj.user
+*.fsx.fsi
+*.fsproj.user
+
+# Mac
+.DS_Store
+
+# Linux
+*.pid
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Azure
+.azure/
+
+# Thumbnails
+Thumbs.db
+
+# Misc
+*.bak
+*.ncb
+*.aps
+*.pch
+*.ipch
+*.obj
+*.pdb
+*.tlog
+*.idb
+*.lib
+*.exe
+*.dll
+*.com
+*.ocx
+*.manifest
+*.exp
+*.ilk
+*.map
+*.mdf
+*.ldf
+*.suo
+*.user
+*.build
+*.cache
+*.vspscc
+*.vsscc
+_ReSharper.*/
+*.[Cc]odeAnalysisLog.xml
+[Tt]est[Rr]esults/
+[Bb]lame.txt
+
+# ReSharper
+*.DotSettings
+*.DotSettings.user
+
+# Git
+.gitattributes
+.gitkeep
+
+# Local settings
+LocalSettings.xml
+
+# NuGet
+*.nuget.props
+*.nuget.targets
+*.rsp
+
+# xUnit
+*.xunit.runner.json
+
+# StyleCop
+StyleCop.Cache
+
+# NCrunch
+_NCrunch_*
+
+# Sentry
+.sentryclirc
+
+# Docusaurus
+docs/build/
+
+# SonarSource
+.sonarlint/
+
+# Visual Studio for Mac
+.vs/
